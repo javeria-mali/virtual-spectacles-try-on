@@ -710,23 +710,19 @@ with left_column:
     st.write(
         "Press START and allow camera access."
     )
-
-    webrtc_streamer(
-
-        key="spectacles-try-on",
-
-        video_processor_factory=SpectaclesProcessor,
-
-        media_stream_constraints={
-            "video": True,
-            "audio": False
-        }
-    )
-
-    st.markdown(
-        '</div>',
-        unsafe_allow_html=True
-    )
+webrtc_streamer(
+    key="spectacles-try-on",
+    video_processor_factory=SpectaclesProcessor,
+    media_stream_constraints={
+        "video": True,
+        "audio": False
+    },
+    rtc_configuration={
+        "iceServers": [
+            {"urls": ["stun:stun.l.google.com:19302"]}
+        ]
+    }
+)
 
 
 # =========================================================
